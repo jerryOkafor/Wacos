@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/c1">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/wacos"
+        android:textColor="@android:color/white"
+        android:id="@+id/textView"
+        android:textStyle="bold"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_above="@+id/display_image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/civil_brdge1"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@android:color/darker_gray"
+        android:id="@+id/display_image" />
+
+    <TextView
+        android:id="@+id/surety_id_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/background_light"
+        android:text="@string/surety_name"
+        android:layout_gravity="center|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:id="@+id/display_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/background_light"
+        android:text="@string/display_name"
+        android:layout_gravity="center|bottom"
+        android:layout_above="@+id/surety_id_tv"
+        android:layout_alignLeft="@+id/surety_id_tv"
+        android:layout_alignStart="@+id/surety_id_tv"
+        android:layout_marginBottom="3dp"/>
+</RelativeLayout>

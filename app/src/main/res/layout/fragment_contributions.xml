@@ -1,0 +1,63 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dipoletech.wacos.Contributions"
+    android:background="@color/g1"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/pay_welcome"
+        android:textAlignment="center"
+        android:textColor="@android:color/tertiary_text_light"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:padding="5dp"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/p_of_p"
+        android:id="@+id/textView3"
+        android:padding="5dp"
+        android:layout_above="@+id/spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/spinner"
+        android:textAlignment="center"
+        android:backgroundTint="@android:color/darker_gray"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/pay_bnt"
+        android:layout_alignStart="@+id/pay_bnt" />
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/make_payment"
+        android:alpha="0.9"
+        android:background="@android:color/holo_blue_dark"
+        android:id="@+id/pay_bnt"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="60dp" />
+
+
+</RelativeLayout>

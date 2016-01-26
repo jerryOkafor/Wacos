@@ -1,0 +1,147 @@
+<resources>
+    <string name="app_name">Wacos</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_intro">Intro</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="make_contibutions">Make Contribution</string>
+    <string name="payment_history">Payment History</string>
+    <string name="news">News</string>
+    <string name="rate">Rate this App</string>
+    <string name="feedback">Give us Feedback</string>
+    <string name="share">Share with Friends</string>
+    <string name="action_about">About</string>
+    <string name="display_name">Okafor Jerry Hanks (123456s)</string>
+    <string name="wacos">WACOS</string>
+    <string name="openDrawer">Drawer Opened</string>
+    <string name="closeDrawer">Drawer Closed</string>
+    <string name="wacos_welcome">Welcome To Women Co-Operative Society</string>
+    <string name="dedication">This App is dedicated to the Women Co-Operative Society</string>
+    <string name="surety_name">Surety ID : 1234567</string>
+    <string name="name_tv">Full Name</string>
+    <string name="password">Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="email">Email</string>
+    <string name="enter_surety_id">Enter a Surety Id to Continue</string>
+    <string name="title_activity_auth">Auth</string>
+    <string name="phone">Phone Number</string>
+    <string name="password_again">Passowrd Again</string>
+    <string name="surety_id_checked">Surety Id Check Passed: Proceed. </string>
+    <string name="continue_tex">Continue</string>
+    <string name="login">Login</string>
+    <string name="image">Image</string>
+    <string name="pay_welcome">You can contribute (Donate or Pay Dues ) to the Women
+        Co-Operative Society by paying via your Verve Smart card. Simply choose
+        the purpose of payment and hit make payment.</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="dues">Purpose: Dues</string>
+    <string name="amount">Amount: N2000.00</string>
+    <string name="my_id">My Id: 1234556</string>
+    <string name="paid">PAID: # 2000.00</string>
+    <string name="debt">DEBT: # 0.000</string>
+    <string name="p_of_p">Select Purpose of Payment:</string>
+    <string name="verify_s_id">Verify Surety ID</string>
+
+    <array name="payment_choice">
+        <item>Select....?</item>
+        <item>Dues</item>
+        <item>Donation</item>
+    </array>
+    <string name="title_activity_info_details">InfoDetails</string>
+    <string name="s2_title">Register and Become  a member intstantly without hitches, registration made as smart as possible.</string>
+    <string name="s2_postfix">Join the association withing 24 hours without having to go to offices for registration.</string>
+    <string name="wacos_s3_title">You can now easily make ur Donations and Contributions in a smart wya using your verve card within minutes</string>
+    <string name="s3_postfix">Ltes make payments of dues and audition smarter with this app.</string>
+    <string name="log_out">Logout</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
+    <string name="feedback_hint">Your feedback goes here....</string>
+    <string name="write_feed_back">Write Your Feedback Here.</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="i_accept">I accept the</string>
+    <string name="terms_of_s">Terms of Service</string>
+    <string name="and">&amp;</string>
+    <string name="agreement">Agreement</string>
+    <string name="back">Back</string>
+    <string name="ok">Ok</string>
+    <string name="tofs_a"><![CDATA[Terms Of Service & Agreement.]]></string>
+    <string name="tofs_txt">The answers to these questions are relatively simple, but not necessarily
+        obvious. This document addresses those questions by taking you through the basics of using
+        NetBeans IDE to prepare your applications for distribution and then deploying those applications.
+        In addition, this document provides information that you might need to configure your system
+        (or which you might need to pass on to the users of your application). We will show a few different
+        approaches for deploying an application, so that users can access the application by:  •tDouble-clicking
+        the application\s Java Archive (JAR) file. •\tCalling the application from the command line. •tCalling
+        the application from a script file.The answers to these questions are relatively simple, but not necessarily
+        obvious. This document addresses those questions by taking you through the basics of using NetBeans IDE to
+        prepare your applications for distribution and then deploying those applications. In addition, this document
+        provides information that you might need to configure your system (or which you might need to pass on to the
+        users of your application). We will show a few different approaches for deploying an application, so that users
+        can access the application by:
+•	Double-clicking the application\'s Java Archive (JAR) file.
+•	Calling the application from the command line.
+•	Calling the application from a script file.
+</string>
+    <string name="not_registered">Not registered?   Signup …</string>
+    <string name="here">here</string>
+    <string name="already_registered">Already Registered? Signin ...</string>
+</resources>

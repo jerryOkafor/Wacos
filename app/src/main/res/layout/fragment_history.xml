@@ -1,0 +1,52 @@
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.dipoletech.wacos.History"
+        android:paddingTop="5dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/history_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="?actionBarSize"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="@color/disabled"
+            android:orientation="horizontal">
+
+            <TextView
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:text="@string/paid"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_margin="5dp"
+                android:layout_gravity="left|center_vertical"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:inputType="textMultiLine"
+                android:id="@+id/paid" />
+
+            <TextView
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:text="@string/debt"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_margin="5dp"
+                android:layout_gravity="right|center_vertical"
+                android:gravity="right|center_vertical"
+                android:textSize="14sp"
+                android:inputType="textMultiLine"
+                android:id="@+id/debt" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>

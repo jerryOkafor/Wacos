@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#1976d2</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="divider">#c5cae9</color>
+    <color name="c1">#00BCD4</color>
+    <color name="c2">#e3f2fd</color>
+
+    <color name="disabled">#bbdefb</color>
+    <color name="disabled2">#90caf9</color>
+
+    <color name="g1">#eeeeee</color>
+    <color name="g2">#e0e0e0</color>
+    <color name="white">#ffffff</color>
+</resources>

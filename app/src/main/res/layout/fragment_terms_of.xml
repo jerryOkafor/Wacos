@@ -1,0 +1,124 @@
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.dipoletech.nigeriansocietyofengineers.FeedBackFragment"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="8dp"
+    android:elevation="5dp"
+    app:cardElevation="5dp"
+    android:background="@android:color/background_light">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="false">
+
+        <!-- TODO: Update blank fragment layout -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tofs_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:layout_alignParentTop="true"
+            android:isScrollContainer="false">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tofs_a"
+                    android:paddingBottom="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold|italic"
+                    android:id="@+id/textView18"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_action_shield"
+                    android:layout_alignBottom="@+id/textView18"
+                    android:layout_toLeftOf="@+id/textView18"
+                    android:layout_toStartOf="@+id/textView18"
+                    android:contentDescription="@string/image" />
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_below="@+id/tofs_toolbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_above="@+id/btm_btns">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tofs_txt"
+                android:padding="10dp"/>
+            </ScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="false"
+            android:id="@+id/btm_btns"
+            android:gravity="right"
+            android:keepScreenOn="true"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:background="@color/disabled"
+            android:alpha="0.8"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/back"
+                android:background="@android:color/transparent"
+                android:id="@+id/tofsBack"
+                android:textColor="#a14144"
+                android:typeface="sans"
+                android:textStyle="bold" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ok"
+                android:background="@android:color/transparent"
+                android:id="@+id/tofsOk"
+                android:textColor="#a14144"
+                android:textStyle="bold"
+                android:typeface="sans"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
+
