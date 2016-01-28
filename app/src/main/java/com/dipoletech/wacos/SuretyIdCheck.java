@@ -4,11 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.dipoletech.wacos.model.User;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 
 
 /**
@@ -24,6 +34,7 @@ public class SuretyIdCheck extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = SuretyIdCheck.class.getSimpleName();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -33,6 +44,9 @@ public class SuretyIdCheck extends Fragment {
     private View rootView;
     private TextView suretyIdTv;
     private Button contunueBtn;
+    private ProgressBar spBar;
+    private Firebase rootRef;
+    private Firebase sCheckRef;
 
     public SuretyIdCheck() {
         // Required empty public constructor
@@ -63,6 +77,10 @@ public class SuretyIdCheck extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        //get the reference to the firebase
+        rootRef = new Firebase(Constants.appUrl);
+
     }
 
     @Override
@@ -71,6 +89,10 @@ public class SuretyIdCheck extends Fragment {
         // Inflate the layout for this fragment
         rootView =  inflater.inflate(R.layout.fragment_surety_id_check, container, false);
 
+        //get instance of the progress bar
+        spBar = (ProgressBar) rootView.findViewById(R.id.sPBar);
+
+
         suretyIdTv = (TextView) rootView.findViewById(R.id.surety_id_tv);
 
         contunueBtn = (Button) rootView.findViewById(R.id.surety_continue_btn);
@@ -78,8 +100,40 @@ public class SuretyIdCheck extends Fragment {
         contunueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String suretyId  = suretyIdTv.getText().toString().trim();
-                onContinueButtonPressed(suretyId);
+                final String suretyId = suretyIdTv.getText().toString().trim();
+                //i shall check if the surety id exists
+
+                showProgress();
+
+                //add a single event listener
+                sCheckRef = rootRef.child("users");
+                 Query qRef = sCheckRef.orderByChild("suretyId");
+
+                qRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        Log.v(TAG, dataSnapshot.getValue().toString());
+                        for (DataSnapshot users : dataSnapshot.getChildren()) {
+                            User user = users.getValue(User.class);
+                            //check if the user matches the giving surety id
+                            if (user.getSuretyId().equals(suretyId)) {
+                                Toast.makeText(getContext(), "Surety Id Check passed.", Toast.LENGTH_LONG).show();
+                                onVerifiedSuretyId(suretyId);
+                            }
+                        }
+                        hideProgress();
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                        //make a toast
+                        Toast.makeText(getContext(), "Error: " + firebaseError.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+
             }
         });
 
@@ -90,11 +144,27 @@ public class SuretyIdCheck extends Fragment {
         return rootView;
     }
 
+    private void showProgress() {
+        spBar.setVisibility(View.VISIBLE);
+        contunueBtn.setText("Verifying surety id.");
+        contunueBtn.setAllCaps(false);
+        contunueBtn.setAlpha(new Float(0.5));
+    }
+
+    //hides the progress bar
+    private void hideProgress() {
+        spBar.setVisibility(View.INVISIBLE);
+        contunueBtn.setText("Continue");
+        contunueBtn.setAllCaps(true);
+        contunueBtn.setAlpha(new Float(1));
+    }
+
+
     // TODO: Rename method, update argument and hook method into UI event
-    public void onContinueButtonPressed(String sId) {
+    public void onVerifiedSuretyId(String sId) {
         if (mListener != null) {
 //            mListener.onFragmentInteraction(uri);
-            mListener.continueButtonClicked(sId);
+            mListener.suretyIdVerified(sId);
 
 
         }
@@ -130,6 +200,6 @@ public class SuretyIdCheck extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-        void continueButtonClicked(String sId);
+        void suretyIdVerified(String sId);
     }
 }

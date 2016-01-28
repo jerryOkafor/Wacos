@@ -3,42 +3,34 @@ package com.dipoletech.wacos;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.dipoletech.wacos.adapaters.PostsAdapter;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link News.OnFragmentInteractionListener} interface
+ * {@link NewPost.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link News#newInstance} factory method to
+ * Use the {@link NewPost#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class News extends Fragment {
+public class NewPost extends DialogFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final int GRID_COUNT = 1;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private View rootView;
-    private RecyclerView infoRecycler;
-    private StaggeredGridLayoutManager mStaggeredLayoutManager;
-    private PostsAdapter infoAdapter;
 
-    public News() {
+    public NewPost() {
         // Required empty public constructor
     }
 
@@ -48,11 +40,11 @@ public class News extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment News.
+     * @return A new instance of fragment NewPost.
      */
     // TODO: Rename and change types and number of parameters
-    public static News newInstance(String param1, String param2) {
-        News fragment = new News();
+    public static NewPost newInstance(String param1, String param2) {
+        NewPost fragment = new NewPost();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,20 +65,7 @@ public class News extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView =  inflater.inflate(R.layout.fragment_news, container, false);
-
-        //get the infoRecycler
-        infoRecycler = (RecyclerView) rootView.findViewById(R.id.info_recycler);
-
-        infoAdapter = new PostsAdapter(getContext());
-
-        //get the Layout manager for thr Recycler view
-        mStaggeredLayoutManager = new StaggeredGridLayoutManager(GRID_COUNT, StaggeredGridLayoutManager.VERTICAL);
-        infoRecycler.setLayoutManager(mStaggeredLayoutManager);
-
-        infoRecycler.setAdapter(infoAdapter);
-
-        return rootView;
+        return inflater.inflate(R.layout.fragment_new_post, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -6,11 +6,21 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.dipoletech.wacos.adapaters.HistoryAdapter;
+import com.dipoletech.wacos.model.HistoryItem;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -27,6 +37,7 @@ public class History extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final int GRID_COUNT = 1;
+    private static final String TAG = History.class.getSimpleName();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -37,6 +48,13 @@ public class History extends Fragment {
     private RecyclerView recycler;
     private HistoryAdapter rAdapter;
     private StaggeredGridLayoutManager mStaggeredLayoutManager;
+    private Firebase hRef;
+    private Firebase myHref;
+
+    //list of history
+    private List<HistoryItem> histories;
+    private Firebase nHRef;
+    private ProgressBar hPBar;
 
     public History() {
         // Required empty public constructor
@@ -67,6 +85,27 @@ public class History extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        hRef = new Firebase(Constants.appUrl + "/history");
+        myHref = hRef.child(hRef.getAuth().getUid());
+        histories = new ArrayList<>();
+
+        //add some history for now
+//        int i = 0;
+//        do {
+//            nHRef = myHref.child(String.valueOf(System.currentTimeMillis()));
+//            HistoryItem item = new HistoryItem();
+//            item.setDate(System.currentTimeMillis());
+//            item.setPurpose("donation");
+//            item.setAmount("2000.00");
+//            item.setMyId("my Id");
+//
+//            nHRef.setValue(item);
+//
+//            i++;
+//        }while (i<6);
+
+
+
     }
 
     @Override
@@ -75,10 +114,35 @@ public class History extends Fragment {
         // Inflate the layout for this fragment
         rootView =  inflater.inflate(R.layout.fragment_history, container, false);
 
+
+        //get hPBar
+        hPBar = (ProgressBar) rootView.findViewById(R.id.hPBar);
+
+        myHref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot history : dataSnapshot.getChildren()) {
+//                    User user = users.getValue(User.class);
+                    HistoryItem hItem = history.getValue(HistoryItem.class);
+                    histories.add(hItem);
+                }
+                Log.v(TAG,histories.toString());
+                rAdapter = new HistoryAdapter(getContext(), histories);
+                recycler.setAdapter(rAdapter);
+                hPBar.setVisibility(View.INVISIBLE);
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
         //get the recycler
         recycler = (RecyclerView) rootView.findViewById(R.id.history_recycler);
 
-        rAdapter = new HistoryAdapter(getContext());
+        rAdapter = new HistoryAdapter(getContext(),histories);
 
         //get the Layout manager for thr Recycler view
         mStaggeredLayoutManager = new StaggeredGridLayoutManager(GRID_COUNT, StaggeredGridLayoutManager.VERTICAL);

@@ -40,7 +40,7 @@
     <string name="my_id">My Id: 1234556</string>
     <string name="paid">PAID: # 2000.00</string>
     <string name="debt">DEBT: # 0.000</string>
-    <string name="p_of_p">Select Purpose of Payment:</string>
+    <string name="p_of_p">Purpose of Payment:</string>
     <string name="verify_s_id">Verify Surety ID</string>
 
     <array name="payment_choice">
@@ -144,4 +144,5 @@
     <string name="not_registered">Not registered?   Signup …</string>
     <string name="here">here</string>
     <string name="already_registered">Already Registered? Signin ...</string>
+    <string name="send_surty_id">Share my ID</string>
 </resources>

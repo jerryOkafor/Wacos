@@ -70,9 +70,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="text"
-                android:textStyle="bold"
                 android:typeface="sans"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/darker_gray"
                 android:gravity="center_vertical"
                 android:background="@android:color/white"
@@ -96,13 +95,13 @@
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="40dp"
-                android:alpha="0.4"
                 android:layout_below="@+id/linearLayout8" />
 
             <ProgressBar
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:id="@+id/progressBar"
+                android:id="@+id/sPBar"
+                android:visibility="invisible"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="6dp"
                 android:layout_alignBottom="@+id/surety_continue_btn"

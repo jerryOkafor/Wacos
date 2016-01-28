@@ -16,7 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dipoletech.wacos.adapaters.ViewPagerAdapter;
+import com.dipoletech.wacos.model.User;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -34,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements
     private NavigationView navigationView;
     private TextView displayNameTv;
     private CircleImageView displayImageView;
+    private Firebase fireBaseRef;
+    private TextView upLineSuretyIdTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //get the fire-base ref
+        fireBaseRef = new Firebase(Constants.appUrl);
         //initialize the drawer layout
         drawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         //action bar drawer Toggle
@@ -110,11 +120,10 @@ public class MainActivity extends AppCompatActivity implements
                         startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         break;
                     case R.id.action_sign_out:
-                        //clear account
-//                        SharedPreferences.Editor editor = settings.edit();
-//                        editor.clear();
-//                        editor.commit();
-//                        drawerlayout.closeDrawers();
+                        //sign out
+                        drawerlayout.closeDrawers();
+                        fireBaseRef.unauth();
+                        startActivity(new Intent(MainActivity.this,Auth.class));
 //                        finish();
                         break;
                 }
@@ -127,13 +136,36 @@ public class MainActivity extends AppCompatActivity implements
         //get the header first
         View header = navigationView.getHeaderView(0);
         displayNameTv = (TextView) header.findViewById(R.id.display_name_tv);
+        upLineSuretyIdTv = (TextView)header.findViewById(R.id.surety_id_tv);
         displayImageView = (CircleImageView) header.findViewById(R.id.display_image);
 
         //start setting it
-//        displayNameTv.setText(String.format(getString(R.string.format_display_name), displayName));
-//        Glide.with(this)
-//                .load(profileImageUrl)
-//                .into(displayImageView);
+        Firebase pRef = fireBaseRef.child("users");
+        pRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot users : dataSnapshot.getChildren()) {
+                    User user = users.getValue(User.class);
+                    //check if authData is null
+                    if (fireBaseRef.getAuth().getUid()!=null) {
+                        //check if the user matches the giving surety id
+                        if (user.getUid().equals(fireBaseRef.getAuth().getUid())) {
+                            displayNameTv.setText(user.getName() + " (" + user.getSuretyId() + ")");
+                            upLineSuretyIdTv.setText("UpLine Surety Id: " + user.getUpLineSuretyId());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+        Glide.with(this)
+                .load(fireBaseRef.getAuth().getProviderData().get("profileImageURL"))
+                .into(displayImageView);
 
 
         //get the viewpager
@@ -229,4 +261,5 @@ public class MainActivity extends AppCompatActivity implements
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 }

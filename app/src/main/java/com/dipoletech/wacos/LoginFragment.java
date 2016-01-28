@@ -5,11 +5,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 
 /**
@@ -25,6 +32,7 @@ public class LoginFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = LoginFragment.class.getSimpleName();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -33,7 +41,9 @@ public class LoginFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private View rootView;
     private Button loginBtn;
-    private TextView hereTv;
+    private TextView hereTv, emailTv,passTv;
+    private ProgressBar loginPBar;
+    private Firebase loginRef;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -64,20 +74,91 @@ public class LoginFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        loginRef = new Firebase(Constants.appUrl);
+
+
+    }
+
+    private void startMainActivity() {
+
+        startActivity(new Intent(getContext(),MainActivity.class));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        loginRef.addAuthStateListener(new Firebase.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(AuthData authData) {
+                if (authData!=null)
+                {
+                    startMainActivity();
+                    getActivity().finish();
+                }
+            }
+        });
+
+       // Inflate the layout for this fragment
         rootView =  inflater.inflate(R.layout.fragment_login, container, false);
+
+        loginPBar = (ProgressBar) rootView.findViewById(R.id.loginPBar);
+
+        //get the email and password
+
+        emailTv = (TextView) rootView.findViewById(R.id.email);
+        passTv = (TextView) rootView.findViewById(R.id.password);
 
         loginBtn = (Button) rootView.findViewById(R.id.login_button);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), MainActivity.class));
+//                startActivity(new Intent(getActivity(), MainActivity.class));
+                //here i shall get the email and password and attempt to login the
+                //user
+
+                String email = emailTv.getText().toString().trim();
+                String password = passTv.getText().toString().trim();
+
+                if (email.isEmpty()||password.isEmpty())
+                {
+                    //do nothing
+                    //just post error
+                    Toast.makeText(getContext(),"You must fill the email and password fields",Toast.LENGTH_LONG).show();
+                }else {
+                    //start showing the p bar and ling text
+                    showProgress();
+                    //try to do the login
+
+                    loginRef.authWithPassword(
+                            email,
+                            password,
+                            new Firebase.AuthResultHandler() {
+
+                                @Override
+                                public void onAuthenticated(AuthData authData) {
+
+                                    Toast.makeText(getContext(), "login Successful!", Toast.LENGTH_LONG).show();
+                                    hideProgress();
+                                    startMainActivity();
+                                    getActivity().finish();
+                                }
+
+                                @Override
+                                public void onAuthenticationError(FirebaseError firebaseError) {
+                                    //log the error
+                                    Log.v(TAG,firebaseError.toString());
+                                    Toast.makeText(getContext(), "Login Error: "+ firebaseError.getMessage(), Toast.LENGTH_LONG).show();
+                                    hideProgress();
+
+                                }
+                            }
+                    );
+
+                }
+
+
             }
         });
 
@@ -94,6 +175,20 @@ public class LoginFragment extends Fragment {
 
     }
 
+    private void hideProgress() {
+        loginPBar.setVisibility(View.INVISIBLE);
+        loginBtn.setAlpha(new Float(1));
+        loginBtn.setText("Login");
+        loginBtn.setAllCaps(true);
+    }
+
+    private void showProgress() {
+        loginPBar.setVisibility(View.VISIBLE);
+        loginBtn.setAlpha(new Float(0.4));
+        loginBtn.setAllCaps(false);
+        loginBtn.setText("Authenticating....");
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -104,6 +199,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -133,5 +229,6 @@ public class LoginFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
 
         void toRegister();
+
     }
 }
