@@ -10,10 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.view.animation.LinearInterpolator;
+import android.widget.LinearLayout;
 
 import com.dipoletech.wacos.adapaters.HistoryAdapter;
 import com.dipoletech.wacos.model.HistoryItem;
+import com.dipoletech.wacos.util.Constants;
+import com.dipoletech.wacos.util.HideViewOnScroll;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -54,7 +57,8 @@ public class History extends Fragment {
     //list of history
     private List<HistoryItem> histories;
     private Firebase nHRef;
-    private ProgressBar hPBar;
+    private LinearLayout hPBar;
+    private LinearLayout hBox;
 
     public History() {
         // Required empty public constructor
@@ -114,21 +118,53 @@ public class History extends Fragment {
         // Inflate the layout for this fragment
         rootView =  inflater.inflate(R.layout.fragment_history, container, false);
 
+        //get the history display box
+        hBox = (LinearLayout) rootView.findViewById(R.id.h_s_box);
+
+        //get the recycler
+        recycler = (RecyclerView) rootView.findViewById(R.id.history_recycler);
+
+        rAdapter = new HistoryAdapter(getContext(), histories);
+
+        //get the Layout manager for thr Recycler view
+        mStaggeredLayoutManager = new StaggeredGridLayoutManager(GRID_COUNT, StaggeredGridLayoutManager.VERTICAL);
+        recycler.setLayoutManager(mStaggeredLayoutManager);
+
+        recycler.setAdapter(rAdapter);
+
+
+        //set the onscroll listener
+        recycler.addOnScrollListener(new HideViewOnScroll() {
+            @Override
+            protected void onHide() {
+                hBox.animate().translationY(hBox.getHeight()+hBox.getBottom())
+                        .setInterpolator(new LinearInterpolator()).start();
+            }
+
+            @Override
+            protected void onShow() {
+                hBox.animate().translationY(0)
+                        .setInterpolator(new LinearInterpolator()).start();
+
+            }
+        });
+
 
         //get hPBar
-        hPBar = (ProgressBar) rootView.findViewById(R.id.hPBar);
+        hPBar = (LinearLayout) rootView.findViewById(R.id.hpLayout);
 
         myHref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //clear old data first
+                histories.clear();
                 for (DataSnapshot history : dataSnapshot.getChildren()) {
-//                    User user = users.getValue(User.class);
                     HistoryItem hItem = history.getValue(HistoryItem.class);
+
                     histories.add(hItem);
                 }
-                Log.v(TAG,histories.toString());
-                rAdapter = new HistoryAdapter(getContext(), histories);
-                recycler.setAdapter(rAdapter);
+                Log.v(TAG, histories.toString());
+                rAdapter.swapData(histories);
                 hPBar.setVisibility(View.INVISIBLE);
 
             }
@@ -139,16 +175,7 @@ public class History extends Fragment {
             }
         });
 
-        //get the recycler
-        recycler = (RecyclerView) rootView.findViewById(R.id.history_recycler);
 
-        rAdapter = new HistoryAdapter(getContext(),histories);
-
-        //get the Layout manager for thr Recycler view
-        mStaggeredLayoutManager = new StaggeredGridLayoutManager(GRID_COUNT, StaggeredGridLayoutManager.VERTICAL);
-        recycler.setLayoutManager(mStaggeredLayoutManager);
-
-        recycler.setAdapter(rAdapter);
 
 
         return rootView;

@@ -1,7 +1,6 @@
 package com.dipoletech.wacos;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dipoletech.wacos.util.Constants;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -80,8 +80,14 @@ public class LoginFragment extends Fragment {
     }
 
     private void startMainActivity() {
+        if (mListener != null) {
+            mListener.startMainActivity();
+        }else {
+//            Intent mIntent = new Intent(getContext(),MainActivity.class);
+//            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            startActivity(mIntent);
+        }
 
-        startActivity(new Intent(getContext(),MainActivity.class));
     }
 
     @Override
@@ -94,7 +100,6 @@ public class LoginFragment extends Fragment {
                 if (authData!=null)
                 {
                     startMainActivity();
-                    getActivity().finish();
                 }
             }
         });
@@ -175,6 +180,8 @@ public class LoginFragment extends Fragment {
 
     }
 
+
+
     private void hideProgress() {
         loginPBar.setVisibility(View.INVISIBLE);
         loginBtn.setAlpha(new Float(1));
@@ -230,5 +237,6 @@ public class LoginFragment extends Fragment {
 
         void toRegister();
 
+        void startMainActivity();
     }
 }

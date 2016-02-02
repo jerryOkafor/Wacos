@@ -35,7 +35,7 @@
             android:tint="@android:color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:src="@drawable/ic_action_circles"
+            android:src="@drawable/wacos4"
             app:civ_border_width="2dp"
             app:civ_border_color="#ffffff" />
     </LinearLayout>

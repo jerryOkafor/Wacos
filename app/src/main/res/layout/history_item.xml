@@ -2,10 +2,10 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingTop="5dp"
-    android:background="@color/g1">
+    android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="40dp"
@@ -23,10 +23,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/dues"
+        android:id="@+id/purpose_tv"
+        android:textColor="@android:color/black"
+        android:alpha="0.59"
         android:textStyle="bold"
-        android:id="@+id/pupose_tv"
         android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/amount_tv"
@@ -37,10 +39,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/amount"
+        android:textColor="@android:color/black"
+        android:alpha="0.54"
         android:id="@+id/amount_tv"
-        android:textStyle="bold"
         android:singleLine="true"
-        android:layout_below="@+id/pupose_tv"
+        android:layout_below="@+id/purpose_tv"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/sender_image" />
@@ -53,11 +56,11 @@
         android:id="@+id/id_tv"
         android:lines="1"
         android:textSize="12sp"
+        android:textColor="@android:color/black"
+        android:alpha="0.38"
         android:layout_below="@+id/amount_tv"
-        android:layout_alignLeft="@+id/amount_tv"
-        android:layout_alignStart="@+id/amount_tv"
-        android:layout_alignRight="@+id/amount_tv"
-        android:layout_alignEnd="@+id/amount_tv" />
+        android:layout_toRightOf="@+id/sender_image"
+        android:layout_toEndOf="@+id/sender_image" />
 
 
 
@@ -87,8 +90,9 @@
         android:layout_alignParentEnd="true" />
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.25dp"
-        android:background="@android:color/darker_gray"
+        android:layout_height="0.5dp"
+        android:background="@android:color/black"
+        android:alpha="0.12"
         android:layout_below="@+id/id_tv"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="60dp"/>

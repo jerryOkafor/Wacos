@@ -1,24 +1,39 @@
 package com.dipoletech.wacos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
+import com.dipoletech.wacos.util.Constants;
 import com.github.paolorotolo.appintro.AppIntro;
 
 public class Intro extends AppIntro {
 
+    private SharedPreferences settings;
+    private boolean isFirstTime;
+
     @Override
     public void init(Bundle savedInstanceState) {
-        addSlide(new com.dipoletech.wacos.slides.Intro());
-        addSlide(new com.dipoletech.wacos.slides.SecondIntro());
-        addSlide(new com.dipoletech.wacos.slides.ThirdIntro());
+        settings = PreferenceManager.getDefaultSharedPreferences(this);
+
+        isFirstTime = settings.getBoolean(Constants.isFisrtTime, false);
+
+
+        if (!isFirstTime) {
+            addSlide(new com.dipoletech.wacos.slides.Intro());
+            addSlide(new com.dipoletech.wacos.slides.SecondIntro());
+            addSlide(new com.dipoletech.wacos.slides.ThirdIntro());
+        }else {
+            loadAuthActivity();
+        }
 
     }
 
     @Override
     public void onSkipPressed() {
 
-        loadMainActivity();
+        loadAuthActivity();
     }
 
     @Override
@@ -29,7 +44,10 @@ public class Intro extends AppIntro {
     @Override
     public void onDonePressed() {
 
-        loadMainActivity();
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(Constants.isFisrtTime,true);
+        editor.commit();
+        loadAuthActivity();
     }
 
     @Override
@@ -37,10 +55,9 @@ public class Intro extends AppIntro {
 
     }
 
-    public  void loadMainActivity()
+    public  void loadAuthActivity()
     {
         startActivity(new Intent(this,Auth.class));
         finish();
-//        startActivity(new Intent(this, MainActivity.class));
     }
 }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dipoletech.wacos.model.User;
+import com.dipoletech.wacos.util.Constants;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
@@ -44,7 +45,7 @@ public class NewAccountFragment extends Fragment {
     private View rootView;
     private Button regBtn;
     private TextView tofs, agree,sHereTv;
-    private EditText regNameTv,regEmailTv,regPassTv,regPass2Tv,regPhoneTv;
+    private EditText regNameTv,regEmailTv,regPassTv,regPass2Tv,regPhoneTv,dobTv;
     public CheckBox termsCheckBox;
     private ProgressBar npBar;
     private Firebase regRef;
@@ -96,6 +97,7 @@ public class NewAccountFragment extends Fragment {
         regNameTv = (EditText) rootView.findViewById(R.id.reg_name);
         regEmailTv = (EditText) rootView.findViewById(R.id.reg_email);
         regPhoneTv = (EditText)rootView.findViewById(R.id.reg_phone);
+        dobTv = (EditText) rootView.findViewById(R.id.birth_day);
         regPassTv = (EditText) rootView.findViewById(R.id.reg_password);
         regPass2Tv = (EditText) rootView.findViewById(R.id.reg_password2);
 
@@ -106,6 +108,7 @@ public class NewAccountFragment extends Fragment {
                 final String name = regNameTv.getText().toString().trim();
                 final String email = regEmailTv.getText().toString().trim();
                 String phone = regPhoneTv.getText().toString().trim();
+                final String dob = dobTv.getText().toString().trim();
                 String password = regPassTv.getText().toString().trim();
                 String password2 = regPass2Tv.getText().toString().trim();
                 final String suretyId = String.valueOf(getSuretyId());
@@ -116,29 +119,29 @@ public class NewAccountFragment extends Fragment {
                     Toast.makeText(getContext(),"You must fill all fields!",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (!password.equals(password2))
-                    {
+                    if (!password.equals(password2)) {
                         //make another toast
                         Toast.makeText(getContext(), "Passwords not equal!", Toast.LENGTH_LONG).show();
-                    }
-                    //show progress
-                    showProgress();
+                    } else
+                    {
+                        //show progress
+                        showProgress();
                     //add a new user now
                     regRef.createUser(
                             email,
                             password,
-                            new Firebase.ValueResultHandler<Map<String, Object>>(){
+                            new Firebase.ValueResultHandler<Map<String, Object>>() {
                                 @Override
                                 public void onSuccess(Map<String, Object> stringObjectMap) {
                                     //persist other user details
-                                    Firebase userRef = regRef.child(regRef.getAuth().getUid());
+                                    Firebase userRef = regRef.child(stringObjectMap.get("uid").toString());
                                     User user = new User();
                                     //set all the user values
                                     user.setUid(stringObjectMap.get("uid").toString());
                                     user.setName(name);
                                     user.setEmail(email);
                                     user.setJoinedDate(System.currentTimeMillis());
-                                    user.setBirthDay(System.currentTimeMillis());
+                                    user.setBirthDay(dob);
                                     user.setSuretyId(suretyId);
                                     user.setUpLineSuretyId(uPlineSuretyId);
 
@@ -156,11 +159,12 @@ public class NewAccountFragment extends Fragment {
                                 public void onError(FirebaseError firebaseError) {
                                     hideProgress();
                                     //make a toast with the error
-                                    Toast.makeText(getContext(), "Error: "+firebaseError.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "Error: " + firebaseError.getMessage(), Toast.LENGTH_LONG).show();
 
                                 }
                             }
                     );
+                }
 
                 }
 

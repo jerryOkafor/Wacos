@@ -1,0 +1,205 @@
+<!--<android.support.v7.widget.CardView-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--tools:context="com.dipoletech.nigeriansocietyofengineers.FeedBackFragment"-->
+    <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+    <!--card_view:cardCornerRadius="8dp"-->
+    <!--android:elevation="5dp"-->
+    <!--app:cardElevation="5dp"-->
+    <!--android:background="@android:color/background_light">-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:isScrollContainer="false">-->
+
+        <!--&lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/tofs_toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="?attr/colorPrimary"-->
+            <!--style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+            <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:isScrollContainer="false">-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!-- -->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/imageView"-->
+                    <!--android:tint="@android:color/white"-->
+                    <!--android:src="@drawable/ic_action_info"-->
+                    <!--android:layout_alignBottom="@+id/textView18"-->
+                    <!--android:layout_toLeftOf="@+id/textView18"-->
+                    <!--android:layout_toStartOf="@+id/textView18"-->
+                    <!--android:contentDescription="@string/image" />-->
+
+
+            <!--</RelativeLayout>-->
+        <!--</android.support.v7.widget.Toolbar>-->
+
+        <!--&lt;!&ndash;<ScrollView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/scrollView"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@android:color/holo_blue_dark"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_below="@+id/tofs_toolbar"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_centerHorizontal="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginTop="5dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginRight="5dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginLeft="5dp">&ndash;&gt;-->
+
+           <!-- -->
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:isScrollContainer="false"-->
+            <!--android:id="@+id/btm_btns"-->
+            <!--android:gravity="right"-->
+            <!--android:keepScreenOn="true"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:background="@color/disabled"-->
+            <!--android:alpha="0.8"-->
+            <!--android:layout_alignParentBottom="true">-->
+
+
+        <!--</LinearLayout>-->
+
+        <!--<Button-->
+            <!--style="?android:attr/buttonStyleSmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/ok"-->
+            <!--android:id="@+id/aboutOk"-->
+            <!--android:textColor="#a14144"-->
+            <!--android:textStyle="bold"-->
+            <!--android:typeface="sans"-->
+            <!--android:layout_below="@+id/textView6"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true" />-->
+
+
+    <!--</RelativeLayout>-->
+
+
+<!--</android.support.v7.widget.CardView>-->
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+tools:context="com.dipoletech.nigeriansocietyofengineers.FeedBackFragment"
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
+card_view:cardCornerRadius="8dp"
+android:elevation="5dp"
+app:cardElevation="5dp"
+android:background="@android:color/background_light">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="false">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tofs_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:layout_alignParentTop="true"
+        android:isScrollContainer="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about"
+                android:paddingBottom="8dp"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold|italic"
+                android:id="@+id/textView18"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:tint="@android:color/white"
+                android:src="@drawable/ic_action_info"
+                android:layout_alignBottom="@+id/textView18"
+                android:layout_toLeftOf="@+id/textView18"
+                android:layout_toStartOf="@+id/textView18"
+                android:contentDescription="@string/image" />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedBackText"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_below="@+id/tofs_toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:isScrollContainer="true"
+        android:padding="5dp"
+        android:text="@string/about_txt"
+        android:background="@android:color/background_light"
+        android:maxHeight="400dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="false"
+        android:layout_below="@+id/feedBackText"
+        android:gravity="right"
+        android:keepScreenOn="true"
+        android:orientation="horizontal"
+        android:overScrollMode="never">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:background="@android:color/transparent"
+            android:id="@+id/about_ok"
+            android:textColor="#a14144"
+            android:textStyle="bold"
+            android:typeface="sans"
+            android:layout_marginRight="10dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
+

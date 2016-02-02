@@ -7,8 +7,9 @@ package com.dipoletech.wacos.model;/**
  * 26 23 15 Wacos
  **/
 public class User {
-    private double birthDay,joinedDate;
-    private String name, email, suretyId, upLineSuretyId, phone, uid;
+    private String birthDay,displayName;
+    private double joinedDate;
+    private String name, email, suretyId, upLineSuretyId, phone, uid,profileImage;
 
 
     public  User()
@@ -32,12 +33,12 @@ public class User {
         this.email = email;
     }
 
-    public double getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 
 
-    public void setBirthDay(double birthDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
 
     }
@@ -88,5 +89,21 @@ public class User {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }

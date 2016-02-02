@@ -33,7 +33,7 @@
             android:layout_height="250dp"
             android:layout_gravity="center"
             android:tint="@android:color/white"
-            android:src="@drawable/ic_action_user"
+            android:src="@drawable/wacos5"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             app:civ_border_width="2dp"

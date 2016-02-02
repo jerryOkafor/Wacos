@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -35,6 +37,7 @@ public class Contributions extends Fragment {
     private Button payBtn;
     private Spinner spinner;
     private ArrayAdapter<CharSequence> spinnerAdapter;
+    private TextView amountTv;
 
     public Contributions() {
         // Required empty public constructor
@@ -75,6 +78,10 @@ public class Contributions extends Fragment {
 
         payBtn = (Button) rootView.findViewById(R.id.pay_bnt);
 
+        //get the payment amount
+        amountTv = (TextView) rootView.findViewById(R.id.contribution_amount);
+
+
         spinner = (Spinner)rootView.findViewById(R.id.spinner);
 
         payBtn.setOnClickListener(new View.OnClickListener() {
@@ -85,12 +92,19 @@ public class Contributions extends Fragment {
                 if (spinner.getSelectedItemPosition()==0)
                 {
                     //wrong selection
+                    Toast.makeText(getContext(),"You must choose payment type",Toast.LENGTH_LONG).show();
+
+                }else if (amountTv.getText().toString().isEmpty()){
+                    //wrong input value
+                    Toast.makeText(getContext(), "You must enter amount", Toast.LENGTH_LONG).show();
 
                 }else {
 
                     //good selection so continue
                     //get what ever thing the spinner holds for us
                     String payFor = spinner.getSelectedItem().toString().trim();
+
+                    String amount = amountTv.getText().toString().trim();
                     //launch the inter-switch APi passing payFOr as a parameter
                 }
 

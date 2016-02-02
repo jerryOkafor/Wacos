@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.firebase.client.Firebase;
-
 public class Auth extends AppCompatActivity implements
         SuretyIdCheck.OnFragmentInteractionListener,
         NewAccountFragment.OnFragmentInteractionListener,
@@ -19,7 +17,6 @@ public class Auth extends AppCompatActivity implements
     private static final String TAG_1 = "suretyIdCheckFrag";
     private static final String TAG_3 = "loginFrag";
     private static final String TAG_4 = "tofSFrag";
-    private Firebase authRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +30,13 @@ public class Auth extends AppCompatActivity implements
         //present a login for if not
         // else tell them to register
 //       beginNewAccountProcess();
+        //get the shared prefs
+
 
 
                     toLogin();
     }
 
-    private void startMainActivity() {
-        Intent mIntent = new Intent(this,MainActivity.class);
-        startActivity(mIntent);
-    }
 
     private void beginNewAccountProcess() {
         getSupportActionBar().setTitle("Surety Id Check.");
@@ -60,6 +55,14 @@ public class Auth extends AppCompatActivity implements
     public void toRegister() {
         beginNewAccountProcess();
     }
+
+    @Override
+    public void startMainActivity() {
+        Intent mIntent = new Intent(this, MainActivity.class);
+        startActivity(mIntent);
+        finish();
+    }
+
 
     @Override
     public void tofsOkClicked() {

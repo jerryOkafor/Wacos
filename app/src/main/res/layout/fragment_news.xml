@@ -4,32 +4,118 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.dipoletech.wacos.History"
-    android:paddingTop="5dp">
+    android:background="@color/g1"
+    android:paddingTop="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:nestedScrollingEnabled="true">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/info_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/info_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="@color/g1"
+            android:id="@+id/new_post_box">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/chat_text_bg"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:background="@android:color/white"
+                        android:src="@drawable/ic_action_attachment_2"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@android:color/darker_gray"
+                        android:contentDescription="@string/image"
+                        android:id="@+id/post_attach_btn" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:paddingBottom="10dp"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="10sp"
+                        android:text="@string/zero"
+                        android:id="@+id/attach_count_tv"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@+id/post_attach_btn"
+                        android:layout_alignEnd="@+id/post_attach_btn" />
+                </RelativeLayout>
+
+
+                <EditText
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/chat_text_bg"
+                    android:layout_margin="5dp"
+                    android:textColor="@android:color/tertiary_text_dark"
+                    android:hint="@string/write_something"
+                    android:textSize="14sp"
+                    android:maxLines="10"
+                    android:maxHeight="200dp"
+                    android:lines="10"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/info_edit_text" />
+
+            </LinearLayout>
+
+
+            <ImageButton
+                android:padding="5dp"
+                android:src="@drawable/ic_action_send"
+                android:tint="@android:color/background_light"
+                android:layout_margin="5dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/round_button"
+                android:contentDescription="@string/image_button"
+                android:id="@+id/send_info_btn" />
+
+        </LinearLayout>
+
+
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_message"
-        android:tint="@android:color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-
-    <ProgressBar
-        android:id="@+id/pPBar"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
         android:layout_centerInParent="true"
+        android:id="@+id/pLayout"
+        android:orientation="vertical">
 
-        />
+        <ProgressBar
+            android:id="@+id/pPBar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_news"/>
+
+    </LinearLayout>
+
+
+
 
 </RelativeLayout>

@@ -4,20 +4,21 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="com.dipoletech.wacos.History"
+        android:background="@android:color/white"
         android:paddingTop="5dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/history_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="?actionBarSize"/>
+            android:layout_height="match_parent"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentBottom="true"
-            android:background="@color/disabled"
-            android:orientation="horizontal">
+            android:background="@drawable/rounded_corner"
+            android:orientation="horizontal"
+            android:id="@+id/h_s_box">
 
             <TextView
                 android:padding="5dp"
@@ -25,6 +26,7 @@
                 android:text="@string/paid"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
+                android:textStyle="bold"
                 android:layout_margin="5dp"
                 android:layout_gravity="left|center_vertical"
                 android:gravity="center_vertical"
@@ -39,6 +41,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:layout_margin="5dp"
+                android:textStyle="bold"
                 android:layout_gravity="right|center_vertical"
                 android:gravity="right|center_vertical"
                 android:textSize="14sp"
@@ -48,13 +51,25 @@
 
         </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/hPBar"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:id="@+id/hpLayout"
+        android:orientation="vertical">
 
-        />
+        <ProgressBar
+            android:id="@+id/hPBar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_history" />
+
+    </LinearLayout>
 
 
-    </RelativeLayout>
+</RelativeLayout>
